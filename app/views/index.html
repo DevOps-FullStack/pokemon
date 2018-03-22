@@ -1,0 +1,24 @@
+<div class="col-12 mt-3">
+    <h1 class="text-center">Times</h1>
+
+    <table class="table">
+      <thead>
+        <tr class="text-center">
+          <th>Id</th>
+          <th>Nome</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <tr ng-repeat="time in ctrl.times">
+          <td>
+            <a href="times/{{time.id}}">{{time.id}}</a>
+          </td>
+          <td>{{time.name}}</td>
+          <td>
+            <a ng-click="ctrl.apagar(time.id)" class="btn btn-danger btn-sm active">Deletar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

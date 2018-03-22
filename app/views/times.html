@@ -1,0 +1,114 @@
+<div class="col-12 mt-3">
+  <form novalidate class="form-inline" name="form" ng-submit="ctrl.salvar()">
+    <div class="form-group mx-sm-3 mb-2">
+      <input type="text" id="nome" name="name" class="form-control" ng-model="ctrl.time.name" placeholder="Nome do time" required>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2" ng-disabled="form.$invalid">Salvar</button>
+    <div class="invalid-feedback" ng-style="{display: form.name.$submmit && form.name.$error.required ? 'block':'none'}">
+      Nome é obrigátorio.
+    </div>
+  </form>
+</div>
+
+<div class="col-12">
+  <p>Lista de pokemons selecionados: </p>
+  <ul class="list-inline text-center">
+    <li class="list-inline-item">
+      <badge ng-repeat="pokemon in ctrl.time.pokemons" nome="pokemon.name" excluir="ctrl.delPokemon(pokemon)" acao="ctrl.addHabilidades(pokemon)"></badge>
+    </li>
+  </ul>
+</div>
+<div class="col-12">
+  <div class="row mb-3">
+    <div class="col-9">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <span class="oi oi-magnifying-glass"></span>
+          </div>
+        </div>
+        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Buscar" ng-model="ctrl.search.name">
+      </div>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-success" data-toggle="modal" data-target="#modal">Add habilidades</button>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr class="text-center">
+        <th>N°</th>
+        <th>Nome</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="pokemon in ctrl.pokemons | filter:ctrl.search" class="text-center">
+        <td>{{$index + 1}}</td>
+        <td>{{pokemon.name}}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" ng-click="ctrl.addPokemon(pokemon)" ng-disabled="ctrl.disabledAll">Adicionar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Todas as Habilidades</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Selecione o Pokemon que deseja adicionar habilidades:</p>
+        <select name="pokemon" class="custom-select" ng-model="ctrl.pokemon" ng-change="ctrl.isDesableAllSkill()" ng-options="pokemon.name for pokemon in ctrl.time.pokemons">
+        </select>
+        <p class="mt-3">Habilidades:</p>
+        <ul class="list-inline text-center">
+          <li class="list-inline-item">
+            <badge ng-repeat="habilidade in ctrl.pokemon.habilidades" nome="habilidade.name" excluir="ctrl.delHabilidade(habilidade)"></badge>
+          </li>
+        </ul>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <span class="oi oi-magnifying-glass"></span>
+              </div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Buscar" ng-model="ctrl.searchSkill.name">
+          </div>
+        <table class="table">
+          <thead>
+            <tr class="text-center">
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Poder</th>
+              <th>Precisão</th>
+              <th>PP</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="habilidade in ctrl.habilidades | filter:ctrl.searchSkill" class="text-center">
+              <td>{{habilidade.id}}</td>
+              <td>{{habilidade.name}}</td>
+              <td>{{habilidade.power}}</td>
+              <td>{{habilidade.accuracy}}</td>
+              <td>{{habilidade.pp}}</td>
+              <td>
+                <button class="btn btn-primary btn-sm" ng-click="ctrl.addHabilidades(habilidade)" ng-disabled="ctrl.disabledAllSkill">Adicionar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Algar</title>
+  <link rel="stylesheet" href="./components/open-iconic/font/css/open-iconic-bootstrap.css">
+  <link rel="stylesheet" href="./components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./css/index.css">
+
+  <script src="./components/jquery/dist/jquery.js"></script>
+  <script src="./components/bootstrap/dist/js/bootstrap.js"></script>
+
+  <script src="./components/angular/angular.js"></script>
+  <script src="./components/angular-route/angular-route.js"></script>
+  <script src="./components/angular-resource/angular-resource.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/controllers/home.js"></script>
+  <script src="./js/controllers/times.js"></script>  
+  <script src="./js/directives/badge/badge.js"></script>
+  <script src="./js/services/pokemons.js"></script>
+  <script src="./js/services/times.js"></script>
+</head>
+
+<body ng-app="appAlgar">
+  <header>
+    <nav class="nav navbar-dark bg-primary">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/times">Times</a>      
+    </nav>
+  </header>
+  <main class="container">
+    <section ng-view class="row">
+
+    </section>
+  </main>
+  <footer></footer>
+</body>
+
+</html>

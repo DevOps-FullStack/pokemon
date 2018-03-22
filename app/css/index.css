@@ -1,0 +1,12 @@
+badge {
+  padding: 0 5px;
+}
+
+badge .badge i {
+  cursor: pointer;
+  color: white;
+}
+
+.nav.bg-primary a {
+  color: white;
+}
